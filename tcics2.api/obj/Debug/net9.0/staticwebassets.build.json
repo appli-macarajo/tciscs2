@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "VKL6uUAkyJgSQtgFF828W1DtDJinmtsiX/p9sLljH58=",
+  "Source": "tcics2.api",
+  "BasePath": "_content/tcics2.api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
