@@ -2848,23 +2848,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\macarajo\\.nuget\\packages\\": {},
+    "C:\\Users\\naretja\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\macarajo\\tcics2\\tcics2.api\\tcics2.api.csproj",
+      "projectUniqueName": "C:\\Users\\naretja\\tciscs2\\tcics2.api\\tcics2.api.csproj",
       "projectName": "tcics2.api",
-      "projectPath": "C:\\Users\\macarajo\\tcics2\\tcics2.api\\tcics2.api.csproj",
-      "packagesPath": "C:\\Users\\macarajo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\macarajo\\tcics2\\tcics2.api\\obj\\",
+      "projectPath": "C:\\Users\\naretja\\tciscs2\\tcics2.api\\tcics2.api.csproj",
+      "packagesPath": "C:\\Users\\naretja\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\naretja\\tciscs2\\tcics2.api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\macarajo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\naretja\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2873,7 +2873,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
