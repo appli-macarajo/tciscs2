@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 interface LoginForm {
-  email: string;
+  username: string;
   password: string;
 }
 
 export default function LoginPage() {
-  const [form, setForm] = useState<LoginForm>({ email: "", password: "" });
+  const [form, setForm] = useState<LoginForm>({ username: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -35,6 +35,7 @@ export default function LoginPage() {
 
       const data = await res.json();
       console.log("Login success:", data);
+      window.location.href = "/dashboard";
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -52,15 +53,15 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label">Email</label>
+            <label className="form-label">username</label>
             <input
-              type="email"
-              name="email"
-              value={form.email}
+              type="text"
+              name="username"
+              value={form.username}
               onChange={handleChange}
               required
               className="form-control"
-              placeholder="Enter your email"
+              placeholder="Enter your username"
             />
           </div>
 
