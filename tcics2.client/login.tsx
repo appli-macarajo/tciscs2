@@ -15,34 +15,37 @@ export default function LoginPage() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
+  e.preventDefault();
+  setLoading(true);
+  setError(null);
 
-    try {
-      // Replace with your API endpoint
-      const res = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
+  try {
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    });
 
-      if (!res.ok) {
-        throw new Error("Invalid credentials");
-      }
-
-      const data = await res.json();
-      console.log("Login success:", data);
-
-      // Redirect or store token here
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
+    if (!res.ok) {
+      throw new Error("Invalid credentials");
     }
-  };
+
+    const data = await res.json();
+    console.log("Login success:", data);
+
+    // Redirect or store token here
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      setError(err.message);
+    } else {
+      setError("Something went wrong");
+    }
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
