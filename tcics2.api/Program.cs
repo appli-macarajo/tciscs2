@@ -1,6 +1,8 @@
 using tcics2.api.Data;
 using Microsoft.EntityFrameworkCore;
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // ======================
@@ -15,7 +17,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // OpenAPI (optional)
-builder.Services.AddOpenApi();
+
 
 // CORS for React
 builder.Services.AddCors(options =>
@@ -27,23 +29,32 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
-
 var app = builder.Build();
 
 // ======================
 // PIPELINE
 // ======================
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
-app.UseHttpsRedirection();
-
+// 1. CORS MUST BE FIRST
 app.UseCors("AllowClient");
 
-// Enable controllers
+// 2. HANDLE PREFLIGHT (VERY IMPORTANT FOR IIS)
+app.Use(async (context, next) =>
+{
+    if (context.Request.Method == "OPTIONS")
+    {
+        context.Response.StatusCode = 200;
+        await context.Response.CompleteAsync();
+        return;
+    }
+
+    await next();
+});
+
+// 3. HTTPS redirect
+app.UseHttpsRedirection();
+
+// 4. Controllers
 app.MapControllers();
 
 app.Run();

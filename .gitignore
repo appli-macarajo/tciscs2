@@ -1,15 +1,16 @@
-node_modules/
-dist/
-.env
-.vscode/
-bin/
-obj/
-
-
 # .NET
 bin/
 obj/
+publish/
 
 # Node
 node_modules/
 dist/
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
