@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\tcics2.api.props" />
-</Project>
