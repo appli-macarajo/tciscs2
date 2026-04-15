@@ -4,3 +4,12 @@ dist/
 .vscode/
 bin/
 obj/
+
+
+# .NET
+bin/
+obj/
+
+# Node
+node_modules/
+dist/
