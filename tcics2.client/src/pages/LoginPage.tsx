@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_URL } from "../config/api";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 interface LoginForm {
@@ -21,7 +22,7 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      const res = await fetch("/api/login", {
+  const res = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,9 +36,12 @@ export default function LoginPage() {
 
       const data = await res.json();
       console.log("Login success:", data);
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
+    }catch (err) {
+  const message =
+    err instanceof Error ? err.message : "Something went wrong";
+
+  setError(message);
+} finally {
       setLoading(false);
     }
   };
