@@ -1,7 +1,85 @@
+/* =========================
+   🌐 GLOBAL CYBERPUNK BACKGROUND (MERGED)
+========================= */
+
 body {
   font-family: system-ui;
-  background: linear-gradient(135deg, #1e2a3a 0%, #2d3e50 100%);
+  min-height: 100vh;
+  overflow: hidden;
+
+  /* 🌈 Animated cyberpunk gradient (YOUR REQUEST) */
+  background: linear-gradient(270deg, #0f2027, #203a43, #2c5364, #1a1a2e);
+  background-size: 800% 800%;
+  animation: gradientMove 15s ease infinite;
 }
+
+/* 🌈 Gradient animation */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* =========================
+   🔳 CYBER GRID OVERLAY
+========================= */
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  top: 0;
+  left: 0;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+
+  background-size: 40px 40px;
+
+  transform: perspective(500px) rotateX(60deg) translateY(-200px);
+  animation: gridMove 10s linear infinite;
+
+  z-index: 0;
+}
+
+@keyframes gridMove {
+  from {
+    transform: perspective(500px) rotateX(60deg) translateY(-200px);
+  }
+  to {
+    transform: perspective(500px) rotateX(60deg) translateY(0px);
+  }
+}
+
+/* =========================
+   📺 SCANLINES EFFECT
+========================= */
+
+body::after {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.25) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* =========================
+   🧩 LOGIN LAYOUT
+========================= */
 
 .login-container {
   position: relative;
@@ -10,7 +88,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
+
+/* =========================
+   🔄 ROTATING CIRCLE
+========================= */
 
 .circle-container {
   position: absolute;
@@ -24,22 +107,90 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* =========================
+   ⚡ ROTATING BARS
+========================= */
+
+.bar {
+  position: absolute;
+  width: 8px;
+  height: 35px;
+  background: #4a5f7f;
+  border-radius: 4px;
+
+  top: 0;
+  left: 50%;
+  transform-origin: center 170px;
+}
+
+.bar.active {
+  background: linear-gradient(180deg, #ff7b00, #00e5ff);
+  box-shadow: 0 0 20px rgba(255,123,0,0.8);
+}
+
+/* =========================
+   🔵 LOGIN BOX (CLEAN + NEON)
+========================= */
+
 .login-box {
   position: relative;
   z-index: 10;
-  background: rgba(30, 42, 58, 0.95);
+
+  background: rgba(20, 30, 45, 0.85);
+  backdrop-filter: blur(12px);
+
   padding: 40px;
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   width: 420px;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  animation: flicker 2s infinite alternate;
 }
+
+/* =========================
+   🔥 LOGIN TITLE
+========================= */
 
 .login-title {
   text-align: center;
-  color: #ffa500;
+  color: #00e9fa;
   margin-bottom: 30px;
   font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  /* ✅ ONLY TEXT ANIMATION */
+  animation: titleGlow 2s infinite;
 }
+
+/* =========================
+   ⚡ FLICKER EFFECT
+========================= */
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #ff7b00,
+      0 0 20px #ff7b00,
+      0 0 40px #00e5ff;
+
+    box-shadow:
+      0 0 5px #fff,
+      0 0 10px #ff7b00,
+      0 0 20px #00e5ff;
+  }
+
+  20%, 24%, 55% {
+    text-shadow: none;
+    box-shadow: none;
+  }
+}
+
+/* =========================
+   ✏️ INPUTS
+========================= */
 
 .input-group-custom {
   position: relative;
@@ -49,41 +200,51 @@ body {
 .input-group-custom input {
   width: 100%;
   padding: 12px 40px 12px 15px;
-  background: rgba(255,255,255,0.1);
+
+  background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.2);
+
   border-radius: 25px;
   color: #fff;
+  outline: none;
 }
+
+.input-group-custom input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+/* =========================
+   🧿 ICON
+========================= */
 
 .input-icon {
   position: absolute;
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.6);
 }
+
+/* =========================
+   🔘 BUTTON
+========================= */
 
 .login-btn-custom {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(90deg, #ffa500, #ff8c00);
+
+  background: linear-gradient(90deg, #c6ebec, #00e5ff);
   border: none;
   border-radius: 25px;
-  color: white;
+
+  color: rgb(255, 123, 0);
   font-weight: 600;
-}
-.bar {
-  position: absolute;
-  width: 8px;
-  height: 35px;
-  background: #4a5f7f;
-  border-radius: 4px;
-  top: 0;
-  left: 50%;
-  transform-origin: center 170px;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
 }
 
-.bar.active {
-  background: linear-gradient(180deg, #ffa500, #ff8c00);
-  box-shadow: 0 0 20px rgba(255,165,0,0.8);
+.login-btn-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255,123,0,0.6);
 }
