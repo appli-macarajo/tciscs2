@@ -11,7 +11,7 @@ export default function Dashboard() {
         style={{ backgroundColor: "#a435f0" }}
       >
         <h5 className="fw-bold me-3 text-white mb-0">
-          TCICS Learning
+          TCICS Learning 1111111
         </h5>
 
         <input
