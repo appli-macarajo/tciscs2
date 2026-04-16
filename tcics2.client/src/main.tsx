@@ -1,9 +1,20 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import LoginPage from "./pages/LoginPage";
+import { StrictMode, useState } from 'react'
+import { createRoot } from 'react-dom/client'
+import LoginPage from './pages/LoginPage'
+import Dashboard from './pages/Dashboard'
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <LoginPage />
-  </React.StrictMode>
-);
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  return isLoggedIn ? (
+    <Dashboard />
+  ) : (
+    <LoginPage onLogin={() => setIsLoggedIn(true)} />
+  )
+}
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+)
