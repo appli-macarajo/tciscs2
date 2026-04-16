@@ -9,7 +9,7 @@ function App() {
   return isLoggedIn ? (
     <Dashboard />
   ) : (
-    <LoginPage />
+    <LoginPage onLogin={() => setIsLoggedIn(true)} />
   )
 }
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_URL } from "../config/api";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 interface LoginForm {
@@ -6,8 +7,16 @@ interface LoginForm {
   password: string;
 }
 
-export default function LoginPage() {
-  const [form, setForm] = useState<LoginForm>({ username: "", password: "" });
+export default function LoginPage({
+  onLogin,
+}: {
+  onLogin: () => void;
+}) {
+  const [form, setForm] = useState<LoginForm>({
+    username: "",
+    password: "",
+  });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -21,7 +30,7 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      const res = await fetch("/api/login", {
+      const res = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,7 +44,10 @@ export default function LoginPage() {
 
       const data = await res.json();
       console.log("Login success:", data);
-      window.location.href = "/dashboard";
+
+      // ✅ IMPORTANT: trigger React login state instead of redirect
+      onLogin();
+
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -45,7 +57,10 @@ export default function LoginPage() {
 
   return (
     <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
-      <div className="card shadow-lg p-4" style={{ width: "100%", maxWidth: "400px", borderRadius: "15px" }}>
+      <div
+        className="card shadow-lg p-4"
+        style={{ width: "100%", maxWidth: "400px", borderRadius: "15px" }}
+      >
         <div className="text-center mb-4">
           <h3 className="fw-bold">Welcome Back</h3>
           <p className="text-muted">Sign in to your account</p>
@@ -53,7 +68,7 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label">username</label>
+            <label className="form-label">Username</label>
             <input
               type="text"
               name="username"
@@ -79,7 +94,9 @@ export default function LoginPage() {
           </div>
 
           {error && (
-            <div className="alert alert-danger text-center py-2">{error}</div>
+            <div className="alert alert-danger text-center py-2">
+              {error}
+            </div>
           )}
 
           <button
@@ -91,7 +108,10 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="text-center text-muted mt-3 mb-0" style={{ fontSize: "0.85rem" }}>
+        <p
+          className="text-center text-muted mt-3 mb-0"
+          style={{ fontSize: "0.85rem" }}
+        >
           © 2026 TCICS System
         </p>
       </div>
