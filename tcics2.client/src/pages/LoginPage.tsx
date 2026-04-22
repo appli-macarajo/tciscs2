@@ -3,7 +3,7 @@ import { API_URL } from "../config/api";
 import "./styles/LoginPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function LoginPage({ onLogin }: { onLogin: () => void }) {
+export default function LoginPage({ onLogin }: { onLogin: (user : any) => void }) {
   const [form, setForm] = useState({ username: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -43,9 +43,10 @@ const delay = (ms: number) =>
   if (!res.ok) throw new Error("Invalid credentials");
 
   const data = await res.json();
-  console.log("Login success:", data);
+console.log("Login success:", data);
 
-  onLogin();
+// send user info to parent
+onLogin(data.user);
 } catch (err: any) {
   setError(err.message);
 } finally {

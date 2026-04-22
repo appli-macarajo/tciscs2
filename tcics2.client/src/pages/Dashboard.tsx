@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./styles/Dashboard.css";
 
-export default function Dashboard() {
+export default function Dashboard({ user, onLogout }: { user: any; onLogout?: () => void }) {
   return (
     <div className="cyber-wrapper">
 
@@ -27,15 +27,19 @@ export default function Dashboard() {
               type="text"
             />
           </div>
+<div className="nav-actions">
+  <a className="nav-link" href="#">
+    <span className="icon">◉</span> MY LEARNING
+  </a>
 
-          <div className="nav-actions">
-            <a className="nav-link" href="#">
-              {/* <span className="icon">◉</span> MY LEARNING
-            </a>
-            <button className="cyber-btn primary">LOGIN</button>
-            <button className="cyber-btn secondary">SIGN UP</button> */}
-            </a>
-          </div>
+  <div className="user-badge">
+    {user?.username}
+  </div>
+
+  <button onClick={onLogout} className="cyber-btn secondary">
+    LOGOUT
+  </button>
+</div>
         </nav>
 
         {/* HERO */}
