@@ -24,5 +24,35 @@ namespace tcics2.api.Controllers
 
             return Unauthorized(new { message = "Invalid credentials" });
         }
+
+
+        
+    //Register
+
+    [HttpPost("register")]
+    public IActionResult Register([FromBody] RegisterRequest request)
+    {
+        // For demo purposes only (no database yet)
+        if (string.IsNullOrWhiteSpace(request.Username) || 
+            string.IsNullOrWhiteSpace(request.Password))
+        {
+            return BadRequest(new { message = "Username and password are required" });
+        }
+
+        // Simulate existing user
+        if (request.Username == "admin")
+        {
+            return Conflict(new { message = "User already exists" });
+        }
+
+        // Simulate successful registration
+        return Ok(new
+        {
+            message = "User registered successfully"
+        });
     }
+    
+    }
+
+
 }
