@@ -248,3 +248,38 @@ body::after {
   transform: translateY(-2px);
   box-shadow: 0 0 20px rgba(255,123,0,0.6);
 }
+
+/* ===== EXTRA CYBER ELEMENTS ===== */
+
+.glitch {
+  position: relative;
+}
+
+.search-container {
+  flex: 1;
+  max-width: 400px;
+}
+
+.hero-search {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.hero-input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid #00e9fa;
+  background: rgba(0,229,255,0.05);
+  color: #00e9fa;
+}
+
+.hero-btn {
+  padding: 0.8rem 1rem;
+  background: #ff7b00;
+  border: none;
+  cursor: pointer;
+}
+
+.card-content h6 {
+  color: #00e9fa;
+}

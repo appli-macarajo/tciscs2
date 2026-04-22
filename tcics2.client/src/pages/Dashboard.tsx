@@ -1,170 +1,204 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
+import "./styles/Dashboard.css";
 
 export default function Dashboard() {
   return (
-    <div style={{ backgroundColor: "#fff" }}>
+    <div className="cyber-wrapper">
 
-      {/* TOP NAVBAR */}
-      <nav
-        className="navbar navbar-expand-lg border-bottom px-3"
-        style={{ backgroundColor: "#a435f0" }}
-      >
-        <h5 className="fw-bold me-3 text-white mb-0">
-          TCICS Learning 1111111
-        </h5>
+      {/* BACKGROUND LAYERS */}
+      <div className="cyber-bg" />
+      <div className="cyber-grid" />
+      <div className="cyber-scanlines" />
 
-        <input
-          className="form-control me-3 rounded-pill"
-          placeholder="Search for anything"
-          style={{ maxWidth: "500px" }}
-        />
+      {/* CONTENT */}
+      <div className="content-layer">
 
-        <div className="ms-auto d-flex gap-3 align-items-center">
-          <a className="text-white text-decoration-none" href="#">
-            My Learning
-          </a>
-          <button className="btn btn-light btn-sm">Login</button>
-          <button className="btn btn-dark btn-sm">Sign up</button>
-        </div>
-      </nav>
+        {/* NAVBAR */}
+        <nav className="cyber-navbar">
+          <h5 className="cyber-logo">
+            <span className="glitch" data-text="TCICS">TCICS</span>
+            <span className="subtitle">_LEARNING</span>
+          </h5>
 
-      {/* HERO */}
-      <div className="container-fluid py-5" style={{ background: "#f7f9fa" }}>
-        <div className="row align-items-center">
-          <div className="col-md-6 px-5">
-            <h1 className="fw-bold">Learning that gets you</h1>
-            <p className="text-muted">
-              Skills for your present and future career growth.
-            </p>
-
-            <div className="input-group mt-3">
-              <input className="form-control" placeholder="What do you want to learn?" />
-              <button className="btn btn-dark">Search</button>
-            </div>
-          </div>
-
-          <div className="col-md-6 text-center">
-            <img
-              src="https://img-c.udemycdn.com/notices/web_carousel_slide/image/7c1a2a0a-hero.jpg"
-              className="img-fluid"
-              style={{ maxHeight: "320px" }}
+          <div className="search-container">
+            <input
+              className="cyber-search"
+              placeholder="SEARCH THE MATRIX..."
+              type="text"
             />
           </div>
-        </div>
+
+          <div className="nav-actions">
+            <a className="nav-link" href="#">
+              {/* <span className="icon">◉</span> MY LEARNING
+            </a>
+            <button className="cyber-btn primary">LOGIN</button>
+            <button className="cyber-btn secondary">SIGN UP</button> */}
+            </a>
+          </div>
+        </nav>
+
+        {/* HERO */}
+        <section className="hero-section">
+          <div className="hero-content">
+
+            <div className="hero-left">
+              <h1 className="hero-title">
+                LEARNING THAT<br />
+                <span className="glow-text">GETS YOU</span>
+              </h1>
+
+              <p className="hero-subtitle">
+                Skills for your present and future career growth.
+                <br />
+                <span className="accent">// Enter the digital realm</span>
+              </p>
+
+              <div className="hero-search">
+                <input
+                  className="hero-input"
+                  placeholder="What do you want to learn?"
+                />
+                <button className="hero-btn">
+                  SEARCH →
+                </button>
+              </div>
+            </div>
+
+            <div className="hero-right">
+              <div className="hologram-frame">
+                <img
+                  src="https://img-c.udemycdn.com/notices/web_carousel_slide/image/7c1a2a0a-hero.jpg"
+                  className="hero-image"
+                  alt="hero"
+                />
+                <div className="frame-corner tl" />
+                <div className="frame-corner tr" />
+                <div className="frame-corner bl" />
+                <div className="frame-corner br" />
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* CATEGORY */}
+        <section className="category-section">
+          <div className="category-grid">
+            {["PYTHON", "WEB DEV", "JAVASCRIPT", "DATA SCIENCE", "AWS", "BLOCKCHAIN"].map(
+              (cat, i) => (
+                <div
+                  key={cat}
+                  className="cyber-chip"
+                  style={{ animationDelay: `${i * 0.1}s` }}
+                >
+                  {cat}
+                </div>
+              )
+            )}
+          </div>
+        </section>
+
+        {/* COURSES ROW 1 */}
+        <section className="courses-section">
+          <h4 className="section-title">
+            <span className="title-bracket">[</span>
+            STUDENTS ARE VIEWING
+            <span className="title-bracket">]</span>
+            <div className="title-underline" />
+          </h4>
+
+          <div className="course-scroll">
+            {[1, 2, 3, 4, 5].map((id) => (
+              <CyberCourseCard key={id} id={id} />
+            ))}
+          </div>
+        </section>
+
+        {/* COURSES ROW 2 */}
+        <section className="courses-section">
+          <h4 className="section-title">
+            <span className="title-bracket">[</span>
+            EXPAND YOUR CAREER
+            <span className="title-bracket">]</span>
+            <div className="title-underline" />
+          </h4>
+
+          <div className="course-scroll">
+            {[6, 7, 8, 9, 10].map((id) => (
+              <CyberCourseCard key={id} id={id} />
+            ))}
+          </div>
+        </section>
+
       </div>
-
-      {/* CATEGORY */}
-      <div className="container py-3">
-        <div className="d-flex gap-2 flex-wrap">
-          {["Python", "Web Dev", "JavaScript", "Data Science", "AWS"].map(
-            (cat) => (
-              <span key={cat} className="badge bg-light text-dark border">
-                {cat}
-              </span>
-            )
-          )}
-        </div>
-      </div>
-
-      {/* COURSES */}
-      <div className="container py-3">
-        <h4 className="fw-bold">Students are viewing</h4>
-
-        <div className="d-flex gap-3 overflow-auto py-3">
-          {[1, 2, 3, 4, 5].map((item) => (
-            <CourseCard key={item} id={item} />
-          ))}
-        </div>
-      </div>
-
-      {/* SECOND ROW */}
-      <div className="container py-3">
-        <h4 className="fw-bold">Expand your career opportunities</h4>
-
-        <div className="d-flex gap-3 overflow-auto py-3">
-          {[1, 2, 3, 4, 5].map((item) => (
-            <CourseCard key={item + 10} id={item + 10} />
-          ))}
-        </div>
-      </div>
-
     </div>
   );
 }
 
-/* =========================
-   COURSE CARD WITH HOVER
-========================= */
-function CourseCard({ id }: { id: number }) {
-  const [hover, setHover] = useState(false);
+/* ================= COURSE CARD ================= */
+function CyberCourseCard({ id }: { id: number }) {
+  const [hover, setHover] = useState<boolean>(false);
 
   return (
     <div
-      className="position-relative"
-      style={{ minWidth: "220px" }}
+      className="cyber-card-wrapper"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
 
-      {/* MAIN CARD */}
-      <div className="card border-0 shadow-sm">
-        <img
-          src={`https://picsum.photos/300/160?random=${id}`}
-          className="card-img-top"
-        />
-        <div className="card-body">
-          <h6 className="fw-bold">Course Title {id}</h6>
-          <p className="text-muted small mb-1">Instructor Name</p>
-          <div className="fw-bold">
-            ⭐ 4.6 <span className="text-muted">(1200)</span>
-          </div>
-          <div className="fw-bold">$19.99</div>
+      {/* CARD */}
+      <div className="cyber-course-card">
+
+        <div className="card-image-wrapper">
+          <img
+            src={`https://picsum.photos/300/160?random=${id}`}
+            className="card-image"
+            alt={`Course ${id}`}
+          />
+          <div className="image-overlay" />
         </div>
+
+        <div className="card-content">
+          <div className="card-tag">BESTSELLER</div>
+
+          <h6 className="card-title">
+            CYBER COURSE #{String(id).padStart(3, "0")}
+          </h6>
+
+          <p className="card-instructor">// Instructor_Name</p>
+
+          <div className="card-rating">
+            <span className="stars">★★★★★</span>
+            <span className="rating-text">4.8 (2.5K)</span>
+          </div>
+
+          <div className="card-price">
+            <span className="currency">₱</span>19.99
+          </div>
+        </div>
+
+        <div className="card-glow" />
       </div>
 
-      {/* HOVER PREVIEW (UDemy style popup) */}
+      {/* HOVER */}
       {hover && (
-        <div
-          className="position-absolute bg-white shadow-lg p-3 rounded-3"
-          style={{
-            top: "0",
-            left: "105%",
-            width: "300px",
-            zIndex: 999,
-            animation: "fadeIn 0.15s ease-in-out",
-          }}
-        >
-          <h6 className="fw-bold mb-1">Figma UI UX Design</h6>
+        <div className="hover-preview">
+          <h6 className="preview-title">ADVANCED CYBERSECURITY</h6>
 
-          <span className="badge bg-primary me-1">Bestseller</span>
-          <span className="badge bg-success">Premium</span>
-
-          <p className="text-muted small mt-2 mb-1">
-            Updated 2026 • 10 hours total
-          </p>
-
-          <ul className="small mb-2">
-            <li>UX fundamentals</li>
-            <li>Figma workflow</li>
-            <li>Real project design</li>
+          <ul className="preview-features">
+            <li>→ Advanced encryption techniques</li>
+            <li>→ Network security protocols</li>
+            <li>→ Real-world penetration testing</li>
+            <li>→ Certification preparation</li>
           </ul>
 
-          <button className="btn btn-dark w-100">
-            Add to cart
+          <button className="preview-btn">
+            ADD TO CART +
           </button>
         </div>
       )}
 
-      {/* ANIMATION */}
-      <style>
-        {`
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(-8px); }
-            to { opacity: 1; transform: translateX(0); }
-          }
-        `}
-      </style>
     </div>
   );
 }
