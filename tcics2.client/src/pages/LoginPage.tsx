@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { API_URL } from "../config/api";
-import "./LoginPage.css";
+import "./styles/LoginPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function LoginPage({ onLogin }: { onLogin: () => void }) {
